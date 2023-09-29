@@ -16,6 +16,7 @@ abstract class Observado {
 
     public removerObservador(observador: Observador): void {
         this.observadores = this.observadores.filter((obs) => obs !== observador);
+        console.log(`Observador removido`);
     }
 
     public notificarObservadores(mensagem: string): void {
@@ -43,15 +44,6 @@ class Botao extends Observado {
         super();
         this.texto = texto;
     }
-
-    // getTexto(): string {
-    //     return this.texto;
-    // }
-
-    // setTexto(texto: string) {
-    //     this.texto = texto;
-    // }
-
     clicar(): void {
         this.notificarObservadores(this.texto);
     }
@@ -63,12 +55,16 @@ class ObservadorConcreto implements Observador {
     }
 }
 
+// Cria um novo botão com o texto "Cadastrar"
 const botao1 = new Botao("Cadastrar");
 
+// Cria um observadorConcreto definido com o "console.log(`Botão clicado: ${mensagem}`)"
 const observador1 = new ObservadorConcreto();
 
+// Adiciona a instância observador ao botão1
 botao1.adicionarObservador(observador1);
 
+// Ao receber um click irá notificar todos os observadores existentes
 botao1.clicar();
 
 botao1.removerObservador(observador1);
